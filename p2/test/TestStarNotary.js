@@ -1,17 +1,27 @@
 const StarNotary = artifacts.require('StarNotary');
 
+let instance;
+
 var account1;
 var account2;
+
+let user1;
+let user2;
 
 contract('StarNotary', (accs) => {
   account1 = accs[0];
   account2 = accs[9];
 });
 
+before(async () => {
+  instance = await StarNotary.deployed();
+  user1 = account1;
+  user2 = account2;
+});
+
 it('can Create a Star', async () => {
   // Arrange
   let tokenId = 1;
-  let instance = await StarNotary.deployed();
   await instance.createStar('Awesome Star!', tokenId, {
     from: account1,
   });
@@ -20,8 +30,6 @@ it('can Create a Star', async () => {
 
 it('lets user1 put up their star for sale', async () => {
   // Arrange
-  let instance = await StarNotary.deployed();
-  let user1 = account1;
   let starId = 2;
   let starPrice = web3.utils.toWei('.01', 'ether');
 
@@ -35,9 +43,6 @@ it('lets user1 put up their star for sale', async () => {
 
 it('lets user1 get the funds after the sale', async () => {
   // Arrange
-  let instance = await StarNotary.deployed();
-  let user1 = account1;
-  let user2 = account2;
   let starId = 3;
   let starPrice = web3.utils.toWei('.01', 'ether');
   let balance = web3.utils.toWei('.05', 'ether');
@@ -57,9 +62,6 @@ it('lets user1 get the funds after the sale', async () => {
 
 it('lets user2 buy a star, if it is put up for sale', async () => {
   // Arrange
-  let instance = await StarNotary.deployed();
-  let user1 = account1;
-  let user2 = account2;
   let starId = 4;
   let starPrice = web3.utils.toWei('.01', 'ether');
   let balance = web3.utils.toWei('.05', 'ether');
@@ -75,9 +77,6 @@ it('lets user2 buy a star, if it is put up for sale', async () => {
 
 it('lets user2 buy a star and decreases its balance in ether', async () => {
   // Arrange
-  let instance = await StarNotary.deployed();
-  let user1 = account1;
-  let user2 = account2;
   let starId = 5;
   let starPrice = web3.utils.toWei('.01', 'ether');
   let balance = web3.utils.toWei('.05', 'ether');
@@ -99,13 +98,11 @@ it('lets user2 buy a star and decreases its balance in ether', async () => {
 
 it('can add the star name and star symbol properly', async () => {
   // Arrange
-  let instance = await StarNotary.deployed();
-  let user = account1;
   let starId = 7;
 
   // Act
   // 1. create a Star with different tokenId
-  await instance.createStar('Olli', starId, { from: user });
+  await instance.createStar('Olli', starId, { from: user1 });
   //2. Call the name and symbol properties in your Smart Contract and compare with the name and symbol provided
   let name = await instance.name.call();
   let symbol = await instance.symbol.call();
@@ -117,11 +114,8 @@ it('can add the star name and star symbol properly', async () => {
 
 it('lets 2 users exchange stars', async () => {
   // Arrange
-  let instance = await StarNotary.deployed();
   const tokenId1 = 11;
   const tokenId2 = 12;
-  const user1 = account1;
-  const user2 = account2;
 
   // Act
   // 1. create 2 Stars with different tokenId
@@ -140,10 +134,7 @@ it('lets 2 users exchange stars', async () => {
 it('lets a user transfer a star', async () => {
   // Arrange
   // 1. create a Star with different tokenId
-  let instance = await StarNotary.deployed();
   const tokenId = 9;
-  const user1 = account1;
-  const user2 = account2;
 
   // Act
   await instance.createStar('Test 9 Star!', tokenId, { from: user1 });
@@ -157,16 +148,16 @@ it('lets a user transfer a star', async () => {
 
 it('lookUptokenIdToStarInfo test', async () => {
   // Arrange
-  let instance = await StarNotary.deployed();
-  let user = account1;
   let starId = 6;
 
   // Act
   // 1. create a Star with different tokenId
-  await instance.createStar('Olli', starId, { from: user });
+  await instance.createStar('Olli', starId, { from: user1 });
 
   // 2. Call your method lookUptokenIdToStarInfo
-  let starName = await instance.lookUptokenIdToStarInfo(starId, { from: user });
+  let starName = await instance.lookUptokenIdToStarInfo(starId, {
+    from: user1,
+  });
 
   // Assert
   // 3. Verify if you Star name is the same
@@ -175,7 +166,6 @@ it('lookUptokenIdToStarInfo test', async () => {
 
 it('it should have the right token name', async () => {
   // Arrange
-  let instance = await StarNotary.deployed();
   let tokenNameToBeExpected = 'SuperStarToken';
 
   //Act
@@ -187,7 +177,6 @@ it('it should have the right token name', async () => {
 
 it('it should have the right token symbol', async () => {
   // Arrange
-  let instance = await StarNotary.deployed();
   let tokenSymbolToBeExpected = 'SST';
 
   // Act
