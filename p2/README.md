@@ -11,7 +11,7 @@ ERC-721 Token name: SuperStarToken
 ERC-721 Token symbol: SST
 
 Token Address on the Rinkeby Network:
-[0xd46c4f3bd62882e0601f77d8efedda16ed5133c9](https://rinkeby.etherscan.io/token/0xd46c4f3bd62882e0601f77d8efedda16ed5133c9)
+[0x30bbd452cfbde9746ed5ed585ac1d3465fa0f75c](https://rinkeby.etherscan.io/address/0x30bbd452cfbde9746ed5ed585ac1d3465fa0f75c)
 
 ### ToDo
 
