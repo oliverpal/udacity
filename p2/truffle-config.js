@@ -60,7 +60,7 @@ module.exports = {
         ),
       network_id: 4, // Rinkeby's id
       gas: 4500000,
-      gasPrice: 10000000000,
+      gasPrice: 21000000000,
     },
     // Another network with more advanced options...
     // advanced: {

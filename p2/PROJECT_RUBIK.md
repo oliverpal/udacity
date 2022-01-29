@@ -23,7 +23,7 @@ Task 3
   Helper Points:
   Command used to deploy to Rinkeby truffle migrate --reset --network rinkeby
 
-You will need to have your Metamask’s seed and Infura setup. 
+You will need to have your Metamask’s seed and Infura setup.
 
 This was shown to you in detail in the lesson on Solidity, while creating ERC-20 tokens on Rinkeby.
 
@@ -36,11 +36,12 @@ Task 4
 
 Specify the Truffle version and OpenZeppelin version used in the project.
 
-Truffle version:
+Truffle version: 5.4.6
 OpenZeppelin version: 2.5.1
 Your ERC-721 Token Name: SuperStarToken
 Your ERC-721 Token Symbol: SST
-Your “Token Address” on the Rinkeby Network: https://rinkeby.etherscan.io/token/0xd46c4f3bd62882e0601f77d8efedda16ed5133c9
-Upload your folder to GitHub.
+Your “Token Address” on the Rinkeby Network: [0x30bbd452cfbde9746ed5ed585ac1d3465fa0f75c](https://rinkeby.etherscan.io/address/0x30bbd452cfbde9746ed5ed585ac1d3465fa0f75c)
+Upload your folder to GitHub. (CHECK)
 
-Submit your GitHub Repository Link.
+Submit your GitHub Repository Link. (CHECK)
+https://github.com/oliverpal/udacity
